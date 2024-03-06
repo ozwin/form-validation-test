@@ -31,7 +31,6 @@ function App() {
 
   const onSubmit: SubmitHandler<DataModel> = (data) => {
     handlePostMethod(data).then((status) => {
-      debugger
       if (status === "Success") {
         setAlertMessage("User account successfully created.");
         setSeverity("success");
@@ -62,6 +61,7 @@ function App() {
   return (
     <div className="App">
       <CssBaseline />
+
       <AppBar
         position="absolute"
         color="default"
@@ -71,28 +71,30 @@ function App() {
           borderBottom: (t) => `1px solid ${t.palette.divider}`,
         }}
       >
-        <Toolbar className='test'>
+        <Toolbar className='tool-bar'>
           <img src={logo} className='image-layout' alt="logo" />
         </Toolbar>
       </AppBar>
 
-      {/* Common Alert publisher */}
-      <Snackbar
-        anchorOrigin={anchorOrigin}
-        open={isAlertOpen}
-        // autoHideDuration={5000}  // Auto hide after 5 seconds
-        onClose={handleCloseAlert}
-      >
-        <Alert
-          variant="filled"
-          severity={alertSeverity}
-          sx={{ position: 'absolute', top: 50, right: 25 }}
-        >
-          {alertMessage}
-        </Alert>
-      </Snackbar>
+
       <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
 
+        {/* Common Alert publisher */}
+        <Snackbar
+          anchorOrigin={anchorOrigin}
+          open={isAlertOpen}
+          sx={{ zIndex: (theme) => theme.zIndex.modal + 1 }}
+          // autoHideDuration={5000}  // Auto hide after 5 seconds
+          onClose={handleCloseAlert}
+        >
+          <Alert
+            variant="filled"
+            severity={alertSeverity}
+            sx={{ position: 'absolute', top: 50, right: 25 }}
+          >
+            {alertMessage}
+          </Alert>
+        </Snackbar>
         {/* Sign up form starts here */}
         <Grid container spacing={1} sx={{ mt: '20px' }}>
           <form onSubmit={handleSubmit(onSubmit)} >
