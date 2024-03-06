@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.f596f9e4.css",
-    "main.js": "/static/js/main.5595f819.js",
-    "static/js/453.c1fcb870.chunk.js": "/static/js/453.c1fcb870.chunk.js",
-    "static/media/logo.svg": "/static/media/logo.9d93d5fbdeec1f62ec237397cad093bd.svg",
-    "index.html": "/index.html",
-    "main.f596f9e4.css.map": "/static/css/main.f596f9e4.css.map",
-    "main.5595f819.js.map": "/static/js/main.5595f819.js.map",
-    "453.c1fcb870.chunk.js.map": "/static/js/453.c1fcb870.chunk.js.map"
+    "main.css": "/form-validation-test/static/css/main.f596f9e4.css",
+    "main.js": "/form-validation-test/static/js/main.0764770f.js",
+    "static/js/453.c1fcb870.chunk.js": "/form-validation-test/static/js/453.c1fcb870.chunk.js",
+    "static/media/logo.svg": "/form-validation-test/static/media/logo.9d93d5fbdeec1f62ec237397cad093bd.svg",
+    "index.html": "/form-validation-test/index.html",
+    "main.f596f9e4.css.map": "/form-validation-test/static/css/main.f596f9e4.css.map",
+    "main.0764770f.js.map": "/form-validation-test/static/js/main.0764770f.js.map",
+    "453.c1fcb870.chunk.js.map": "/form-validation-test/static/js/453.c1fcb870.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f596f9e4.css",
-    "static/js/main.5595f819.js"
+    "static/js/main.0764770f.js"
   ]
 }
