@@ -11,7 +11,7 @@ import { useState } from 'react';
 
 function App() {
 
-  const { register, formState: { errors }, handleSubmit, getValues } = useForm<DataModel>();
+  const { register, reset, formState: { errors }, handleSubmit, getValues } = useForm<DataModel>();
   const [isAlertOpen, setAlertOpen] = useState<boolean>(false);
   const [alertMessage, setAlertMessage] = useState<string>('');
   const [alertSeverity, setSeverity] = useState<AlertColor>("success");
@@ -19,7 +19,7 @@ function App() {
 
   const mobileAnchorOrigin: SnackbarOrigin = {
     vertical: 'bottom',
-    horizontal: 'center',
+    horizontal: 'right',
   };
 
   const defaultAnchorOrigin: SnackbarOrigin = {
@@ -140,7 +140,20 @@ function App() {
                       disableClearable
                       id="day"
                       options={days}
-                      renderInput={(params) => <TextField  {...params} label="Day" {...register("date_of_birth.day", { required: "This field required" })} error={errors.date_of_birth?.day ? true : false}
+                      renderInput={(params) => <TextField  {...params} label="Day" {...register("date_of_birth.day", {
+                        required: "This field required", validate: (day) => {
+                          if (getValues("date_of_birth.month") !== 0 && getValues("date_of_birth.year") !== 0 && getValues("date_of_birth.day") !== 0) {
+                            //validate the date
+                            const date = new Date(getValues("date_of_birth.year") as number, getValues("date_of_birth.month") as number - 1, getValues("date_of_birth.day") as number);
+                            return (date.getMonth() + 1 == getValues("date_of_birth.month")
+                              && date.getFullYear() == getValues("date_of_birth.year")
+                              && date.getDate() == getValues("date_of_birth.day"))
+                              || "Please enter a valid date!"
+                          }
+                          return true;
+                        }
+                      })}
+                        error={errors.date_of_birth?.day ? true : false}
                         helperText={errors.date_of_birth?.day?.message} />}
                     />
                   </Grid>
@@ -220,6 +233,7 @@ function App() {
                     fullWidth
                     color="primary"
                     sx={{ borderColor: '#127C95' }}
+                    onClick={() => reset()}
                   >
                     Cancel
                   </Button>
