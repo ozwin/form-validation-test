@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
 .App {
   text-align: center;
 }
@@ -32,7 +34,33 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+.test {
+  background: #252F3D;
+  ;
+}
+
+.image-layout {
+  width: 294px;
+  height: 32px;
+  top: 12px;
+  left: 166px;
+}
+
+button {
+  height: 46px !important;
+  padding: 10px 32px 10px 32px !important;
+  border-radius: 6px !important;
+  gap: 10px !important;
+}
+
+.input-label {
+  text-align: left !important;
+  margin-bottom: 10px;
+  font-weight: 700 !important;
 }
