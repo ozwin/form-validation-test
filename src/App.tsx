@@ -138,7 +138,7 @@ function App() {
                       variant="outlined"
                       fullWidth
                       id="contact_number"
-                      label="Contact Number"
+                      label="Contact Number*"
                       placeholder='4383048998'
                       {...register("contact_number", { required: "Thsi field is required", minLength: { value: 10, message: "Invalid number" }, maxLength: { value: 10, message: "Please enter your number without country code" }, pattern: { value: /^[0-9]+$/i, message: "Sorry. Please enter numbers only." } })}
                       error={errors.contact_number ? true : false}
@@ -154,7 +154,7 @@ function App() {
                       disableClearable
                       id="day"
                       options={days}
-                      renderInput={(params) => <TextField  {...params} label="Day" {...register("date_of_birth.day", {
+                      renderInput={(params) => <TextField  {...params} label="Day*" {...register("date_of_birth.day", {
                         required: "This field required", validate: (day) => {
                           if (getValues("date_of_birth.month") !== '' && getValues("date_of_birth.year") !== '' && getValues("date_of_birth.day") !== '') {
                             //validate the date
@@ -179,7 +179,7 @@ function App() {
                       id="month"
                       options={months}
                       // sx={{ width: 300 }}
-                      renderInput={(params) => <TextField  {...params} label="Month" {...register("date_of_birth.month", { required: "This field required" })} error={errors.date_of_birth?.month ? true : false}
+                      renderInput={(params) => <TextField  {...params} label="Month*" {...register("date_of_birth.month", { required: "This field required" })} error={errors.date_of_birth?.month ? true : false}
                         helperText={errors.date_of_birth?.month?.message} />}
                     />
                   </Grid>
@@ -189,7 +189,7 @@ function App() {
                       disableClearable
                       id="year"
                       options={years}
-                      renderInput={(params) => <TextField  {...params} label="Year" {...register("date_of_birth.year", { required: "This field required" })} error={errors.date_of_birth?.year ? true : false}
+                      renderInput={(params) => <TextField  {...params} label="Year*" {...register("date_of_birth.year", { required: "This field required" })} error={errors.date_of_birth?.year ? true : false}
                         helperText={errors.date_of_birth?.year?.message} />}
                     />
                   </Grid>
@@ -200,7 +200,7 @@ function App() {
                       // required
                       fullWidth
                       id="email"
-                      label="Email Address"
+                      label="Email Address*"
                       {...register("email", { required: "Thsi field is required", pattern: { value: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/i, message: "Sorry, This email address is not valid. Please try again" } })}
                       error={errors.email ? true : false}
                       helperText={errors.email?.message}
@@ -213,7 +213,7 @@ function App() {
                       // required
                       fullWidth
                       id="password"
-                      label="Create Password"
+                      label="Create Password*"
                       {...register("password", { required: "Thsi field is required", minLength: { value: 8, message: "Please enter a password that is atleast 8 characters" }, pattern: { value: /^[a-zA-Z0-9]+$/i, message: "Password can have alphabets and numbers only!" } })}
                       error={errors.password ? true : false}
                       helperText={errors.password?.message}
@@ -226,7 +226,7 @@ function App() {
                       // required
                       fullWidth
                       id="confirm_password"
-                      label="Confirm Password"
+                      label="Confirm Password*"
                       {...register("confirm_password", {
                         required: "Thsi field is required", minLength: { value: 8, message: "Please enter a password that is atleast 8 characters" }, pattern: { value: /^[a-zA-Z0-9]+$/i, message: "Password can have alphabets and numbers only!" }, validate: (value) => {
                           return value === getValues("password") || "Password don't match, please check and try again!";
