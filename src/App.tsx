@@ -9,6 +9,21 @@ import { handlePostMethod } from './services/api';
 import { Alert, Snackbar, AlertColor, useMediaQuery, SnackbarOrigin } from '@mui/material';
 import { useState } from 'react';
 
+const MONTHS_LOCALE_EN = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
 function App() {
 
   const { register, reset, formState: { errors }, handleSubmit, getValues } = useForm<DataModel>();
@@ -30,14 +45,13 @@ function App() {
   const anchorOrigin = isMobileScreen ? mobileAnchorOrigin : defaultAnchorOrigin;
 
   const onSubmit: SubmitHandler<DataModel> = (data) => {
-    handlePostMethod(data).then((status) => {
-      if (status === "Success") {
-        setAlertMessage("User account successfully created.");
+    handlePostMethod(data).then((data) => {
+      if (data.title === "Success") {
         setSeverity("success");
       } else {
-        setAlertMessage("There was an error creating the account");
         setSeverity("error");
       }
+      setAlertMessage(data.description);
       setAlertOpen(true);
     }).catch(() => {
       setAlertMessage("There was an error creating the account");
@@ -54,9 +68,9 @@ function App() {
   };
 
   const currentYear = new Date().getFullYear();
-  const years = Array.from({ length: 100 }, (_, index) => { let item: Menu = { label: String(currentYear - index), value: currentYear - index }; return item; });
-  const months = Array.from({ length: 12 }, (_, index) => { let item: Menu = { label: String(index + 1), value: index + 1 }; return item; });
-  const days = Array.from({ length: 31 }, (_, index) => { let item: Menu = { label: String(index + 1), value: index + 1 }; return item; });
+  const years = Array.from({ length: 100 }, (_, index) => { let item = { label: String(currentYear - index) }; return item; });
+  const months = MONTHS_LOCALE_EN.map((month, index) => ({ label: month, value: index + 1 }));
+  const days = Array.from({ length: 31 }, (_, index) => { let item = { label: String(index + 1) }; return item; });
 
   return (
     <div className="App">
@@ -142,12 +156,13 @@ function App() {
                       options={days}
                       renderInput={(params) => <TextField  {...params} label="Day" {...register("date_of_birth.day", {
                         required: "This field required", validate: (day) => {
-                          if (getValues("date_of_birth.month") !== 0 && getValues("date_of_birth.year") !== 0 && getValues("date_of_birth.day") !== 0) {
+                          if (getValues("date_of_birth.month") !== '' && getValues("date_of_birth.year") !== '' && getValues("date_of_birth.day") !== '') {
                             //validate the date
-                            const date = new Date(getValues("date_of_birth.year") as number, getValues("date_of_birth.month") as number - 1, getValues("date_of_birth.day") as number);
-                            return (date.getMonth() + 1 == getValues("date_of_birth.month")
-                              && date.getFullYear() == getValues("date_of_birth.year")
-                              && date.getDate() == getValues("date_of_birth.day"))
+                            const monthIndex = MONTHS_LOCALE_EN.findIndex(x => x === getValues("date_of_birth.month"));
+                            const date = new Date(parseInt(getValues("date_of_birth.year")), monthIndex, parseInt(getValues("date_of_birth.day")));
+                            return (date.getMonth() === monthIndex)
+                              && date.getFullYear() === parseInt(getValues("date_of_birth.year"))
+                              && date.getDate() === parseInt(getValues("date_of_birth.day"))
                               || "Please enter a valid date!"
                           }
                           return true;

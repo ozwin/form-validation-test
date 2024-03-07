@@ -3,9 +3,9 @@ export interface DataModel {
     contact_number: string;
     email: string;
     date_of_birth: {
-        day: Number;
-        month: Number;
-        year: Number;
+        day: string;
+        month: string;
+        year: string;
     }
     password: string;
     confirm_password: string;
@@ -16,9 +16,9 @@ export const EmptyModel: DataModel = {
     contact_number: '',
     email: '',
     date_of_birth: {
-        day: 0,
-        year: 0,
-        month: 0,
+        day: '',
+        year: '',
+        month: '',
     },
     password: '',
     confirm_password: ''

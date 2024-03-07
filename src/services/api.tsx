@@ -14,7 +14,7 @@ export const handlePostMethod = async (payload: any) => {
             throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        return data.title;
+        return data;
     } catch (error: any) {
         console.error('Error during API call:', error.message);
     }
