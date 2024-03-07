@@ -98,7 +98,7 @@ function App() {
           anchorOrigin={anchorOrigin}
           open={isAlertOpen}
           sx={{ zIndex: (theme) => theme.zIndex.modal + 1 }}
-          // autoHideDuration={5000}  // Auto hide after 5 seconds
+          autoHideDuration={5000}  // Auto hide after 5 seconds
           onClose={handleCloseAlert}
         >
           <Alert
