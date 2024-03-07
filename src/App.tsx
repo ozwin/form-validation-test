@@ -34,7 +34,7 @@ function App() {
 
   const mobileAnchorOrigin: SnackbarOrigin = {
     vertical: 'bottom',
-    horizontal: 'right',
+    horizontal: 'center',
   };
 
   const defaultAnchorOrigin: SnackbarOrigin = {
@@ -90,14 +90,13 @@ function App() {
         </Toolbar>
       </AppBar>
 
-
       <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
-
         {/* Common Alert publisher */}
         <Snackbar
           anchorOrigin={anchorOrigin}
           open={isAlertOpen}
           sx={{ zIndex: (theme) => theme.zIndex.modal + 1 }}
+          className={isMobileScreen ? 'align-notification' : ''}
           autoHideDuration={5000}  // Auto hide after 5 seconds
           onClose={handleCloseAlert}
         >
@@ -109,6 +108,7 @@ function App() {
             {alertMessage}
           </Alert>
         </Snackbar>
+
         {/* Sign up form starts here */}
         <Grid container spacing={1} sx={{ mt: '20px' }}>
           <form onSubmit={handleSubmit(onSubmit)} >
