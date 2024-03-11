@@ -127,7 +127,7 @@ function App() {
                       id="full_name"
                       label="Full Name*"
                       // autoFocus not required for time being
-                      {...register("full_name", { required: "Thsi field is required", pattern: { value: /^[a-zA-Z\s]+$/i, message: "Sorry. Name can not include special symbols. Please use alphabets only." }, validate: (value) => { return value.trim().length !== 0 || "Name has only whitespace" } })}
+                      {...register("full_name", { required: "This field is required", pattern: { value: /^[a-zA-Z\s]+$/i, message: "Sorry. Name can not include special symbols. Please use alphabets only." }, validate: (value) => { return value.trim().length !== 0 || "Name has only whitespace" } })}
                       error={errors.full_name ? true : false}
                       helperText={errors.full_name?.message}
                     />
@@ -140,7 +140,7 @@ function App() {
                       id="contact_number"
                       label="Contact Number*"
                       placeholder='4383048998'
-                      {...register("contact_number", { required: "Thsi field is required", minLength: { value: 10, message: "Invalid number" }, maxLength: { value: 10, message: "Please enter your number without country code" }, pattern: { value: /^[0-9]+$/i, message: "Sorry. Please enter numbers only." } })}
+                      {...register("contact_number", { required: "This field is required", minLength: { value: 10, message: "Invalid number" }, maxLength: { value: 10, message: "Please enter your number without country code" }, pattern: { value: /^[0-9]+$/i, message: "Sorry. Please enter numbers only." } })}
                       error={errors.contact_number ? true : false}
                       helperText={errors.contact_number?.message}
                     />
@@ -201,7 +201,7 @@ function App() {
                       fullWidth
                       id="email"
                       label="Email Address*"
-                      {...register("email", { required: "Thsi field is required", pattern: { value: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/i, message: "Sorry, This email address is not valid. Please try again" } })}
+                      {...register("email", { required: "This field is required", pattern: { value: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/i, message: "Sorry, This email address is not valid. Please try again" } })}
                       error={errors.email ? true : false}
                       helperText={errors.email?.message}
                     />
@@ -214,7 +214,7 @@ function App() {
                       fullWidth
                       id="password"
                       label="Create Password*"
-                      {...register("password", { required: "Thsi field is required", minLength: { value: 8, message: "Please enter a password that is atleast 8 characters" }, pattern: { value: /^[a-zA-Z0-9]+$/i, message: "Password can have alphabets and numbers only!" } })}
+                      {...register("password", { required: "This field is required", minLength: { value: 8, message: "Please enter a password that is atleast 8 characters" }, pattern: { value: /^[a-zA-Z0-9]+$/i, message: "Password can have alphabets and numbers only!" } })}
                       error={errors.password ? true : false}
                       helperText={errors.password?.message}
                     />
@@ -228,7 +228,7 @@ function App() {
                       id="confirm_password"
                       label="Confirm Password*"
                       {...register("confirm_password", {
-                        required: "Thsi field is required", minLength: { value: 8, message: "Please enter a password that is atleast 8 characters" }, pattern: { value: /^[a-zA-Z0-9]+$/i, message: "Password can have alphabets and numbers only!" }, validate: (value) => {
+                        required: "This field is required", minLength: { value: 8, message: "Please enter a password that is atleast 8 characters" }, pattern: { value: /^[a-zA-Z0-9]+$/i, message: "Password can have alphabets and numbers only!" }, validate: (value) => {
                           return value === getValues("password") || "Password don't match, please check and try again!";
                         }
                       })}
